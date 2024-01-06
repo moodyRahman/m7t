@@ -1,0 +1,4 @@
+name: m7t
+version: '${project.version}'
+main: m7t.m7t.M7t
+api-version: '1.20'
