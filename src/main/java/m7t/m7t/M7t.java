@@ -10,7 +10,7 @@ public final class M7t extends JavaPlugin {
     public void onEnable() {
         // Plugin startup
         Bukkit.getLogger()
-                .info("Hello there! Thank you for using m7t, a moody rahman project :), made proudle in VSCode");
+                .info("Hello there! Thank you for using m7t, a moody rahman project :)");
         getServer().getPluginManager().registerEvents(new WalkListener(), this);
         getServer().getPluginManager().registerEvents(new InventoryOpenListener(), this);
 
