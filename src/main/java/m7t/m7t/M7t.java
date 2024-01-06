@@ -12,6 +12,7 @@ public final class M7t extends JavaPlugin {
         Bukkit.getLogger()
                 .info("Hello there! Thank you for using m7t, a moody rahman project :), made proudle in VSCode");
         getServer().getPluginManager().registerEvents(new WalkListener(), this);
+        getServer().getPluginManager().registerEvents(new InventoryOpenListener(), this);
 
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         Thread.currentThread().setContextClassLoader(this.getClassLoader());
