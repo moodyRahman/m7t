@@ -1,8 +1,11 @@
 package m7t.m7t;
 
+import java.io.File;
+
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-import io.javalin.Javalin;
+
+import m7t.m7t.server.Server;
 
 public final class M7t extends JavaPlugin {
 
@@ -10,15 +13,13 @@ public final class M7t extends JavaPlugin {
     public void onEnable() {
         // Plugin startup
         Bukkit.getLogger()
-                .info("Hello there! Thank you for using m7t, a moody rahman project :)");
+                .info("m7t  Copyright (C) 2024  Moody Rahman");
+
         getServer().getPluginManager().registerEvents(new WalkListener(), this);
         getServer().getPluginManager().registerEvents(new InventoryOpenListener(), this);
 
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        Thread.currentThread().setContextClassLoader(this.getClassLoader());
-        Javalin app = Javalin.create().start(8080);
-        Thread.currentThread().setContextClassLoader(classLoader);
-        app.get("/", ctx -> ctx.result("Hello World!"));
+        new Server();
+
         getLogger().info("JavalinPlugin is enabled");
 
     }
