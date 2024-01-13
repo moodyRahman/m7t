@@ -40,5 +40,12 @@ public final class M7t extends JavaPlugin {
     public void onDisable() {
         // Plugin shutdown logic
         Bukkit.getLogger().info("Goobnight");
+        try {
+            Db.conn.close();
+            Bukkit.getLogger().info("successfully closed db");
+
+        } catch (SQLException e) {
+            Bukkit.getLogger().warning("error while closing db");
+        }
     }
 }

@@ -6,15 +6,16 @@ import java.sql.*;
 
 public class Db {
 
-    Connection conn;
+    public static Connection conn;
 
     public Db(JavaPlugin server) {
         server.getLogger().info("booting up the sql db at " + server.getDataFolder().getAbsolutePath() + "/moody.db");
         String url = "jdbc:sqlite:" + server.getDataFolder().getAbsolutePath() + "/moody.db";
 
-        try (Connection conn = DriverManager.getConnection(url)) {
+        try {
+            Connection conn = DriverManager.getConnection(url);
             if (conn != null) {
-                this.conn = conn;
+                Db.conn = conn;
                 Statement st = conn.createStatement();
                 st.execute(
                         "CREATE TABLE IF NOT EXISTS time" +
@@ -49,21 +50,23 @@ public class Db {
         }
     }
 
-    public void increment() {
+    public static void increment() {
         try {
             Statement st = conn.createStatement();
-            st.executeQuery("UPDATE time SET time = time + 1");
+            st.execute("UPDATE time SET time = time + 1");
         } catch (SQLException e) {
             Bukkit.getLogger().warning("failed increment in db");
         }
     }
 
-    public void decrement() {
+    public static void decrement() {
         try {
             Statement st = conn.createStatement();
-            st.executeQuery("UPDATE time SET time = time - 1");
+            st.execute("UPDATE time SET time = time - 1");
         } catch (SQLException e) {
             Bukkit.getLogger().warning("failed decrement in db");
+            Bukkit.getLogger().warning(e.getMessage());
+
         }
     }
 }
