@@ -3,6 +3,7 @@ package m7t.m7t;
 import java.io.File;
 
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import m7t.m7t.server.Server;
@@ -15,12 +16,29 @@ public final class M7t extends JavaPlugin {
         Bukkit.getLogger()
                 .info("m7t  Copyright (C) 2024  Moody Rahman");
 
+        this.saveDefaultConfig();
+        FileConfiguration config = this.getConfig();
+
+        config.addDefault("option", false);
+        config.addDefault("sauce", "lalala");
+
+        getLogger().info("Working Directory = " + this.getDataFolder().getAbsolutePath());
+        config.options().copyDefaults(true);
+        saveConfig();
+
+        File newFolder = new File(this.getDataFolder().getAbsolutePath() + "/scripts");
+
+        if (!newFolder.exists()) {
+            newFolder.mkdirs(); // create the new folder
+        }
+
         getServer().getPluginManager().registerEvents(new WalkListener(), this);
         getServer().getPluginManager().registerEvents(new InventoryOpenListener(), this);
 
         new Server();
 
         getLogger().info("JavalinPlugin is enabled");
+        getLogger().info("Working Directory = " + this.getDataFolder().getAbsolutePath());
 
     }
 
