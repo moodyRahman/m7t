@@ -18,20 +18,7 @@ public final class M7t extends JavaPlugin {
         Bukkit.getLogger()
                 .info("m7t  Copyright (C) 2024  Moody Rahman");
 
-        this.saveDefaultConfig();
-        FileConfiguration config = this.getConfig();
-
-        config.addDefault("option", false);
-        config.addDefault("sauce", "lalala");
-
-        config.options().copyDefaults(true);
-        saveConfig();
-
-        File newFolder = new File(this.getDataFolder().getAbsolutePath() + "/scripts");
-
-        if (!newFolder.exists()) {
-            newFolder.mkdirs(); // create the new folder
-        }
+        new Configs(this);
 
         getServer().getPluginManager().registerEvents(new WalkListener(), this);
         getServer().getPluginManager().registerEvents(new InventoryOpenListener(), this);
