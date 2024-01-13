@@ -7,8 +7,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.sql.*;
-
+import m7t.m7t.db.Db;
 import m7t.m7t.server.Server;
 
 public final class M7t extends JavaPlugin {
@@ -45,6 +44,8 @@ public final class M7t extends JavaPlugin {
         }.runTaskTimer(this, 0L, 100);
 
         new Server();
+
+        new Db(this);
 
         getLogger().info("JavalinPlugin is enabled");
         getLogger().info("Working Directory = " + this.getDataFolder().getAbsolutePath());
