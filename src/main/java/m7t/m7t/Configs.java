@@ -8,12 +8,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Configs {
 
     public static int JavalinPort;
+    public static boolean ShutOff;
 
     public Configs(JavaPlugin server) {
         server.saveDefaultConfig();
         FileConfiguration config = server.getConfig();
 
         config.addDefault("javalin-port", 13303);
+        config.addDefault("auto-shutoff", false);
 
         config.options().copyDefaults(true);
         server.saveConfig();
@@ -26,6 +28,7 @@ public class Configs {
 
         server.getLogger().info("loaded javalin port is " + config.getInt("javalin-port"));
         JavalinPort = config.getInt("javalin-port");
+        ShutOff = config.getBoolean("auto-shutoff");
 
     }
 }
