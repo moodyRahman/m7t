@@ -1,9 +1,6 @@
 package m7t.m7t;
 
-import java.io.File;
-
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 

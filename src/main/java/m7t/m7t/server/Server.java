@@ -5,13 +5,14 @@ import java.util.ArrayList;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import io.javalin.Javalin;
+import m7t.m7t.Configs;
 
 public class Server {
 
     Javalin app;
 
     public Server() {
-        app = Javalin.create().start(8080);
+        app = Javalin.create().start(Configs.JavalinPort);
 
         app.get("/", ctx -> {
             ctx.result("Hello World!");

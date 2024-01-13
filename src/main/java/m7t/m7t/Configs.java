@@ -6,12 +6,14 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Configs {
+
+    public static int JavalinPort;
+
     public Configs(JavaPlugin server) {
         server.saveDefaultConfig();
         FileConfiguration config = server.getConfig();
 
-        config.addDefault("option", false);
-        config.addDefault("sauce", "lalala");
+        config.addDefault("javalin-port", 13303);
 
         config.options().copyDefaults(true);
         server.saveConfig();
@@ -21,5 +23,9 @@ public class Configs {
         if (!newFolder.exists()) {
             newFolder.mkdirs(); // create the new folder
         }
+
+        server.getLogger().info("loaded javalin port is " + config.getInt("javalin-port"));
+        JavalinPort = config.getInt("javalin-port");
+
     }
 }
