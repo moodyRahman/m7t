@@ -1,5 +1,6 @@
 package m7t.m7t.db;
 
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.sql.*;
 
@@ -36,18 +37,16 @@ public class Db {
         }
     }
 
-    public String get_raw(String s) {
+    public ResultSet get_raw(String s) {
         try {
             Statement st = conn.createStatement();
             st.executeQuery(s);
             ResultSet r = st.getResultSet();
-            while (r.next()) {
-
-            }
+            return r;
         } catch (SQLException e) {
-
+            Bukkit.getLogger().warning("bad query ran");
+            return null;
         }
-        return "";
     }
 
     public void increment() {
@@ -55,7 +54,16 @@ public class Db {
             Statement st = conn.createStatement();
             st.executeQuery("UPDATE time SET time = time + 1");
         } catch (SQLException e) {
+            Bukkit.getLogger().warning("failed increment in db");
+        }
+    }
 
+    public void decrement() {
+        try {
+            Statement st = conn.createStatement();
+            st.executeQuery("UPDATE time SET time = time - 1");
+        } catch (SQLException e) {
+            Bukkit.getLogger().warning("failed decrement in db");
         }
     }
 }
