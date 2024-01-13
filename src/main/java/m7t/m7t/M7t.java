@@ -5,6 +5,9 @@ import java.io.File;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
+
+import java.sql.*;
 
 import m7t.m7t.server.Server;
 
@@ -22,7 +25,6 @@ public final class M7t extends JavaPlugin {
         config.addDefault("option", false);
         config.addDefault("sauce", "lalala");
 
-        getLogger().info("Working Directory = " + this.getDataFolder().getAbsolutePath());
         config.options().copyDefaults(true);
         saveConfig();
 
@@ -34,6 +36,13 @@ public final class M7t extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new WalkListener(), this);
         getServer().getPluginManager().registerEvents(new InventoryOpenListener(), this);
+
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                getLogger().info("doing a check");
+            }
+        }.runTaskTimer(this, 0L, 100);
 
         new Server();
 
