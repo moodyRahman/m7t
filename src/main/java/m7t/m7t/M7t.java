@@ -1,5 +1,7 @@
 package m7t.m7t;
 
+import java.sql.SQLException;
+
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -16,6 +18,8 @@ public final class M7t extends JavaPlugin {
                 .info("m7t  Copyright (C) 2024  Moody Rahman");
 
         new Configs(this);
+        new Server();
+        new Db(this);
 
         getServer().getPluginManager().registerEvents(new WalkListener(), this);
         getServer().getPluginManager().registerEvents(new InventoryOpenListener(), this);
@@ -24,12 +28,9 @@ public final class M7t extends JavaPlugin {
             @Override
             public void run() {
                 getLogger().info("doing a check");
+                Db.decrement();
             }
         }.runTaskTimer(this, 0L, 100);
-
-        new Server();
-
-        new Db(this);
 
         getLogger().info("JavalinPlugin is enabled");
         getLogger().info("Working Directory = " + this.getDataFolder().getAbsolutePath());
