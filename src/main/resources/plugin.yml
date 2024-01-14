@@ -6,3 +6,8 @@ libraries:
   - "io.javalin:javalin:5.6.3"
   - "org.slf4j:slf4j-simple:2.0.7"
   - "com.fasterxml.jackson.core:jackson-databind:2.13.2"
+
+commands:
+   remaining:
+      description: Your description
+      usage: /remaining

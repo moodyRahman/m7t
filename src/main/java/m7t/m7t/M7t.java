@@ -6,7 +6,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import m7t.m7t.commands.RemainCommand;
 import m7t.m7t.db.Db;
+import m7t.m7t.listeners.InventoryOpenListener;
+import m7t.m7t.listeners.WalkListener;
 import m7t.m7t.server.Server;
 
 public final class M7t extends JavaPlugin {
@@ -33,13 +36,17 @@ public final class M7t extends JavaPlugin {
             new BukkitRunnable() {
                 @Override
                 public void run() {
-                    getLogger().info("doing a check");
                     Db.decrement();
-                    getLogger().info(Integer.toString(Db.getRemainingTime()));
-
+                    int t = Db.getRemainingTime();
+                    getLogger().info("remaining active time: " + Integer.toString(t));
+                    if (t <= 0) {
+                        Bukkit.shutdown();
+                    }
                 }
             }.runTaskTimer(this, 0L, 100);
         }
+
+        this.getCommand("remaining").setExecutor(new RemainCommand());
     }
 
     @Override
