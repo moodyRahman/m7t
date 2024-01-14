@@ -22,19 +22,13 @@ public class Db {
                 Statement st = conn.createStatement();
                 st.execute(
                         "CREATE TABLE IF NOT EXISTS time" +
-                                "(time INT);");
+                                "(time INT, id INT UNIQUE);");
 
-                st.execute("SELECT time from time");
-                ResultSet r = st.getResultSet();
-                while (r.next()) {
-                    ;
-                }
+                st.execute(
+                        String.format("INSERT OR IGNORE INTO time (time, id) VALUES (%d, 1);", Configs.StartingTime));
+                // st.execute(String.format("INSERT OR IGNORE INTO time (time) VALUES (%d);",
+                // Configs.StartingTime));
 
-                if (r.getRow() == 0) {
-                    st.execute(String.format("insert into time (time) VALUES (%d);", Configs.StartingTime));
-                }
-
-                st.execute(String.format("UPDATE time SET time = %d", Configs.StartingTime));
                 server.getLogger().info("finished initializing database");
             }
         } catch (SQLException e) {
@@ -58,7 +52,7 @@ public class Db {
     public static void increment() {
         try {
             Statement st = conn.createStatement();
-            st.execute("UPDATE time SET time = time + 1");
+            st.execute("UPDATE time SET time=time+1 WHERE id=1");
         } catch (SQLException e) {
             Bukkit.getLogger().warning("failed increment in db");
         }
@@ -67,7 +61,7 @@ public class Db {
     public static void decrement() {
         try {
             Statement st = conn.createStatement();
-            st.execute("UPDATE time SET time = time - 1");
+            st.execute("UPDATE time SET time=time-1 WHERE id=1");
         } catch (SQLException e) {
             Bukkit.getLogger().warning("failed decrement in db");
             Bukkit.getLogger().warning(e.getMessage());
@@ -78,8 +72,7 @@ public class Db {
     public static int getRemainingTime() {
         try {
             Statement st = conn.createStatement();
-            st.execute("SELECT time FROM time");
-            ResultSet r = st.getResultSet();
+            ResultSet r = st.executeQuery("SELECT time FROM time WHERE id=1");
             r.next();
             return r.getInt("time");
         } catch (SQLException e) {
