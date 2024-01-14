@@ -28,15 +28,18 @@ public final class M7t extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new InventoryOpenListener(), this);
 
         // event loop that decrements the time remaining every iteration
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                getLogger().info("doing a check");
-                Db.decrement();
-                getLogger().info(Integer.toString(Db.getRemainingTime()));
 
-            }
-        }.runTaskTimer(this, 0L, 100);
+        if (Configs.ShutOff) {
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    getLogger().info("doing a check");
+                    Db.decrement();
+                    getLogger().info(Integer.toString(Db.getRemainingTime()));
+
+                }
+            }.runTaskTimer(this, 0L, 100);
+        }
     }
 
     @Override
