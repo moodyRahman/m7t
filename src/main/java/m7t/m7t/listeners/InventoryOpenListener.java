@@ -1,4 +1,4 @@
-package m7t.m7t;
+package m7t.m7t.listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
