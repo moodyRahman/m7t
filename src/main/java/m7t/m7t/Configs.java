@@ -9,6 +9,7 @@ public class Configs {
 
     public static int JavalinPort;
     public static boolean ShutOff;
+    public static int StartingTime;
 
     public Configs(JavaPlugin server) {
         server.saveDefaultConfig();
@@ -16,6 +17,7 @@ public class Configs {
 
         config.addDefault("javalin-port", 13303);
         config.addDefault("auto-shutoff", false);
+        config.addDefault("starting-time", 60);
 
         config.options().copyDefaults(true);
         server.saveConfig();
@@ -29,6 +31,7 @@ public class Configs {
         server.getLogger().info("loaded javalin port is " + config.getInt("javalin-port"));
         JavalinPort = config.getInt("javalin-port");
         ShutOff = config.getBoolean("auto-shutoff");
+        StartingTime = config.getInt("starting-time");
 
     }
 }
