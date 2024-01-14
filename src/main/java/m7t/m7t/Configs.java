@@ -7,6 +7,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Configs {
 
+    // we can define a convenient and typesafe way to access config variables here
     public static int JavalinPort;
     public static boolean ShutOff;
     public static int StartingTime;
@@ -28,7 +29,6 @@ public class Configs {
             newFolder.mkdirs(); // create the new folder
         }
 
-        server.getLogger().info("loaded javalin port is " + config.getInt("javalin-port"));
         JavalinPort = config.getInt("javalin-port");
         ShutOff = config.getBoolean("auto-shutoff");
         StartingTime = config.getInt("starting-time");
