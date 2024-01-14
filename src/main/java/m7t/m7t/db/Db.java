@@ -26,6 +26,8 @@ public class Db {
 
                 st.execute(
                         String.format("INSERT OR IGNORE INTO time (time, id) VALUES (%d, 1);", Configs.StartingTime));
+                st.execute(String.format("UPDATE time SET time=%d WHERE id=1", Configs.StartingTime));
+
                 // st.execute(String.format("INSERT OR IGNORE INTO time (time) VALUES (%d);",
                 // Configs.StartingTime));
 
