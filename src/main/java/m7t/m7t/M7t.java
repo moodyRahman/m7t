@@ -29,9 +29,10 @@ public final class M7t extends JavaPlugin {
             public void run() {
                 getLogger().info("doing a check");
                 Db.decrement();
+                getLogger().info(Integer.toString(Db.getRemainingTime()));
+
             }
         }.runTaskTimer(this, 0L, 100);
-
     }
 
     @Override
