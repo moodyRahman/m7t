@@ -17,6 +17,9 @@ public final class M7t extends JavaPlugin {
         Bukkit.getLogger()
                 .info("m7t  Copyright (C) 2024  Moody Rahman");
 
+        // initialize configs from the plugin .yml file
+        // initialize the Javalin server
+        // initialize the database
         new Configs(this);
         new Server();
         new Db(this);
@@ -24,6 +27,7 @@ public final class M7t extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new WalkListener(), this);
         getServer().getPluginManager().registerEvents(new InventoryOpenListener(), this);
 
+        // event loop that decrements the time remaining every iteration
         new BukkitRunnable() {
             @Override
             public void run() {
