@@ -36,6 +36,8 @@ public class Server {
             ctx.json(pout);
         });
 
+        Bukkit.getLogger().info("JavalinPlugin is enabled");
+
     }
 
     private class StatsResponse {

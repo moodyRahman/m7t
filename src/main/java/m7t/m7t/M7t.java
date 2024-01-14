@@ -32,9 +32,6 @@ public final class M7t extends JavaPlugin {
             }
         }.runTaskTimer(this, 0L, 100);
 
-        getLogger().info("JavalinPlugin is enabled");
-        getLogger().info("Working Directory = " + this.getDataFolder().getAbsolutePath());
-
     }
 
     @Override
