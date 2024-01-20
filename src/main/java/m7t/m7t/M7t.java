@@ -46,7 +46,8 @@ public final class M7t extends JavaPlugin {
             }.runTaskTimer(this, 0L, 100);
         }
 
-        this.getCommand("remaining").setExecutor(new RemainCommand());
+        this.getCommand("m7t").setExecutor(new RemainCommand());
+
     }
 
     @Override
