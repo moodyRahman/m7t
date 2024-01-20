@@ -8,6 +8,6 @@ libraries:
   - "com.fasterxml.jackson.core:jackson-databind:2.13.2"
 
 commands:
-   remaining:
+   m7t:
       description: Your description
-      usage: /remaining
+      usage: /m7t
