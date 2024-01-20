@@ -10,4 +10,4 @@ libraries:
 commands:
    m7t:
       description: Your description
-      usage: /m7t
+      usage: /m7t remain | add <int time_to_add>
