@@ -51,10 +51,10 @@ public class Db {
         }
     }
 
-    public static void increment() {
+    public static void increment(int v) {
         try {
             Statement st = conn.createStatement();
-            st.execute("UPDATE time SET time=time+1 WHERE id=1");
+            st.execute(String.format("UPDATE time SET time=time+%d WHERE id=1", v));
         } catch (SQLException e) {
             Bukkit.getLogger().warning("failed increment in db");
         }
