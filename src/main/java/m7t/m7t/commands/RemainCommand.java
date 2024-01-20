@@ -12,6 +12,10 @@ public class RemainCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
+        if (args.length == 0) {
+            return false;
+        }
+
         String subcommand = args[0];
 
         switch (subcommand) {
@@ -21,9 +25,17 @@ public class RemainCommand implements CommandExecutor {
                 break;
 
             case "add":
-                Db.increment(60);
+                if (args.length == 2) {
+                    if (args[1].matches("-?\\d+")) {
+                        Db.increment(Integer.parseInt(args[1]));
+                        sender.sendMessage(Integer.toString(Db.getRemainingTime()) + " minutes remaining");
+                    } else {
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
                 break;
-
         }
 
         return true;
