@@ -9,10 +9,11 @@ public class WalkListener implements Listener {
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
-        Bukkit.getLogger().info("detected some movement from " + event.getPlayer().getName() + " "
-                + event.getPlayer().getLocation().getX() + ", "
-                + event.getPlayer().getLocation().getY() + ", "
-                + event.getPlayer().getLocation().getZ() + ", ");
+        // Bukkit.getLogger().info("detected some movement from " +
+        // event.getPlayer().getName() + " "
+        // + event.getPlayer().getLocation().getX() + ", "
+        // + event.getPlayer().getLocation().getY() + ", "
+        // + event.getPlayer().getLocation().getZ() + ", ");
 
         event.getPlayer().setLevel((int) event.getPlayer().getLocation().getY());
     }
