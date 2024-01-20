@@ -8,7 +8,7 @@ please use this cautiously!
 The initial intent for this project is for me to make what I call an "ignition page", 
 a protected website for my players to visit that allows them to turn on the Minecraft 
 server for a certain period, and then the Minecraft server shuts itself off. This 
-allows players to enjoy Minecraft, with minimal interference for anything my server is running. 
+allows players to enjoy Minecraft, with minimal interference for anything else my server is running. 
 Players should also be able to run commands from within the server if they desire to extend 
 their time. 
 
