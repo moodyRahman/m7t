@@ -3,6 +3,7 @@ package m7t.m7t;
 import java.sql.SQLException;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -13,6 +14,12 @@ import m7t.m7t.listeners.WalkListener;
 import m7t.m7t.server.Server;
 
 public final class M7t extends JavaPlugin {
+
+    public void broadcast(String s) {
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            p.sendMessage(s);
+        }
+    }
 
     @Override
     public void onEnable() {
@@ -38,7 +45,17 @@ public final class M7t extends JavaPlugin {
                 public void run() {
                     Db.decrement();
                     int t = Db.getRemainingTime();
-                    getLogger().info("remaining active time: " + Integer.toString(t));
+                    // getLogger().info("remaining active time: " + Integer.toString(t));
+
+                    if (t % 30 == 0) {
+                        broadcast("remaining active time: " + Integer.toString(t) + " minutes");
+                        getLogger().info("remaining active time: " + Integer.toString(t));
+                    }
+
+                    if (t <= 5) {
+                        broadcast("server shutting down in " + Db.getRemainingTime() + " minutes");
+                    }
+
                     if (t <= 0) {
                         Bukkit.shutdown();
                     }
